@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+/*
 int	ft_parse_str(char *str)
 {
 	int	i;
@@ -24,31 +24,10 @@ int	ft_parse_str(char *str)
 			ft_putendl_fd("Error\n", 2);
 			exit (1);
 		}
-		
+	}
+}*/
 
-}
-int	ft_tab_len(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] >= '0' && str[i] <= '9') 
-
-int	ft_recov_tab(char *str)
-{
-	int	**tab;
-	int	size
-
-	while (str[i] != '\)
-	{
-		tab = malloc(sizeof(int) * 
-
-	
-}
-
-int	ft_read_fd(int fd)
+char	*ft_read_fd(int fd)
 {
 	char	*str;
 	char	*buf;
@@ -62,13 +41,24 @@ int	ft_read_fd(int fd)
 			free(str);
 
 	}
-	ft_recov_tab(buf);
+	return (buf);	
+}
+void	ft_map(char *str)
+{
+	int	x;
+	int	y;
+	char	**tab;
+
+	y = get_y(str);
+	x = get_x(str);
+	tab = ft_init_tab(x, y);
+	tab = ft_put_tab(tab, str, x, y);
 }
 
 int	main(int argc, char **argv)
 {
 	int	fd;
-	char	**str;
+	char	*str;
 	int	i;
 	
 	i = 0;
@@ -80,5 +70,5 @@ int	main(int argc, char **argv)
 		perror("open");
 		exit (1);
 	}
-	ft_read_fd(fd);
-}
+	str = ft_read_fd(fd);
+}	ft_map(str);
