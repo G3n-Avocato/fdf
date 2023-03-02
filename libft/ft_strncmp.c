@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 17:50:16 by lamasson          #+#    #+#             */
-/*   Updated: 2023/01/08 16:21:06 by lamasson         ###   ########.fr       */
+/*   Created: 2022/09/29 18:06:53 by lamasson          #+#    #+#             */
+/*   Updated: 2022/10/09 16:06:32 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "libft/libft.h"
-//# include "mlx.h"
-# include <fcntl.h> //open
-# include <stdio.h> //perror
-# include <stdlib.h> //exit
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t			i;
+	unsigned char	*c1;
+	unsigned char	*c2;
 
-
-#endif
+	i = 0;
+	if (n == 0)
+		return (0);
+	c1 = (unsigned char *) s1;
+	c2 = (unsigned char *) s2;
+	while ((c1[i] != '\0' && c2[i] != '\0') && (c1[i] == c2[i] && i < n - 1))
+		i++;
+	return (c1[i] - c2[i]);
+}

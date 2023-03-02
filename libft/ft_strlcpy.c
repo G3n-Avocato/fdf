@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 17:50:16 by lamasson          #+#    #+#             */
-/*   Updated: 2023/01/08 16:21:06 by lamasson         ###   ########.fr       */
+/*   Created: 2022/09/28 11:15:33 by lamasson          #+#    #+#             */
+/*   Updated: 2022/10/09 19:01:35 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "libft/libft.h"
-//# include "mlx.h"
-# include <fcntl.h> //open
-# include <stdio.h> //perror
-# include <stdlib.h> //exit
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	i;
+	size_t	size_src;
 
-
-#endif
+	i = 0;
+	size_src = ft_strlen((char *)src);
+	if (size == 0)
+		return (size_src);
+	while (size - 1 > i && src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (size_src);
+}

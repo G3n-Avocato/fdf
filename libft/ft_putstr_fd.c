@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 17:50:16 by lamasson          #+#    #+#             */
-/*   Updated: 2023/01/08 16:21:06 by lamasson         ###   ########.fr       */
+/*   Created: 2022/09/30 19:56:20 by lamasson          #+#    #+#             */
+/*   Updated: 2022/10/09 16:04:23 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "libft/libft.h"
-//# include "mlx.h"
-# include <fcntl.h> //open
-# include <stdio.h> //perror
-# include <stdlib.h> //exit
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
 
-
-#endif
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i] != '\0')
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+}

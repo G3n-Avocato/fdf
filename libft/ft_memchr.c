@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 17:50:16 by lamasson          #+#    #+#             */
-/*   Updated: 2023/01/08 16:21:06 by lamasson         ###   ########.fr       */
+/*   Created: 2022/09/29 18:54:15 by lamasson          #+#    #+#             */
+/*   Updated: 2022/10/09 15:46:05 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "libft/libft.h"
-//# include "mlx.h"
-# include <fcntl.h> //open
-# include <stdio.h> //perror
-# include <stdlib.h> //exit
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	char	*t;
+	size_t	i;
 
-
-#endif
+	t = (char *) s;
+	i = 0;
+	while (i != n)
+	{
+		if (*t == (char) c)
+			return (t);
+		else
+		{
+			t++;
+			i++;
+		}
+	}
+	return (NULL);
+}

@@ -1,23 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 17:50:16 by lamasson          #+#    #+#             */
-/*   Updated: 2023/01/08 16:21:06 by lamasson         ###   ########.fr       */
+/*   Created: 2022/09/27 16:05:20 by lamasson          #+#    #+#             */
+/*   Updated: 2022/09/28 22:35:28 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "libft/libft.h"
-//# include "mlx.h"
-# include <fcntl.h> //open
-# include <stdio.h> //perror
-# include <stdlib.h> //exit
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	char	*temp;
+	char	*temp2;
+	size_t	i;
 
-
-#endif
+	if (!dest && !src)
+		return (dest);
+	temp = (char *) src;
+	temp2 = (char *) dest;
+	i = 0;
+	while (n != i)
+	{
+		if (temp >= temp2)
+		{
+			temp2[i] = temp[i];
+			i++;
+		}
+		else
+		{
+			n--;
+			temp2[n] = temp[n];
+		}
+	}
+	return (dest);
+}

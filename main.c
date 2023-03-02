@@ -5,70 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 17:46:12 by lamasson          #+#    #+#             */
-/*   Updated: 2023/01/08 18:11:13 by lamasson         ###   ########.fr       */
+/*   Created: 2023/02/26 12:56:51 by lamasson          #+#    #+#             */
+/*   Updated: 2023/03/02 14:01:48 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-/*
-int	ft_parse_str(char *str)
+
+char	*ft_parse(char *line)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if ((str[i] >= '0' && str[i] <= '9') || (str[i] != '-'))
-		{
-			ft_putendl_fd("Error\n", 2);
-			exit (1);
-		}
-	}
-}*/
-
-char	*ft_read_fd(int fd)
-{
-	char	*str;
-	char	*buf;
-
-	buf = get_next_line(fd);
-	while (buf)
-	{
-		str = get_next_line(fd);
-		buf = ft_strjoin(buf, str);	
-		if (str)
-			free(str);
-
-	}
-	return (buf);	
-}
-void	ft_map(char *str)
-{
-	int	x;
-	int	y;
 	char	**tab;
 
-	y = get_y(str);
-	x = get_x(str);
-	tab = ft_init_tab(x, y);
-	tab = ft_put_tab(tab, str, x, y);
-}
+	tab = ft_split(line, ' ');
+
+
+
+int	ft_open_fd(char *fd);
+{
+	int	in;
+	char	*line;
+
+	in = open(fd, O_RDONLY, 0644);
+	if (in == -1)
+	{
+		perror(fd);
+		exit (1);
+	}
+	while (1)
+	{
+		line = get_next_line(fd);
+		ft_parse(line);
+
+
+
 
 int	main(int argc, char **argv)
 {
-	int	fd;
-	char	*str;
-	int	i;
-	
-	i = 0;
 	if (argc != 2)
-		exit (1);
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
-		perror("open");
-		exit (1);
-	}
-	str = ft_read_fd(fd);
-}	ft_map(str);
+		return (1);
+	ft_open_fd(argv[1]);
