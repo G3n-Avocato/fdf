@@ -36,13 +36,13 @@ int	ft_len_x(int in)
 	i = 0;
 	x = 0;
 	line = get_next_line(in);
-	while (line[i] != '\0')
+	while (line[i] != '\n' && line[i] != '\0')
 	{
-		if (ft_isdigit(line[i]) == 1)
+		if (ft_isdigit(line[i]) == 1 || line[i] == '-')
 			x++;
-		while (line[i] != ' ')
+		while (line[i] != ' ' && line[i] != '\n')
 			i++;
-		while (line[i] == ' ')
+		while (line[i] == ' ' && line[i] != '\n')
 			i++;
 	}
 	free(line);
