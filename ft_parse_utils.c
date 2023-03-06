@@ -6,25 +6,38 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 12:55:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/05 20:51:26 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/06 19:30:57 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	**ft_init_tab(int x, int y)
+t_info_pos	**ft_init_struct(int x, int y)
 {
-	int	**tab;
+	t_info_pos	**tab;
 	int	i;
 
 	i = 0;
-	tab = malloc(sizeof(int) * y);
-	while (i != y)
+	tab = malloc(sizeof(t_info_pos *) * y);
+	while (i < y)
 	{
-		tab[i] = malloc(sizeof(int *) * x);
+		tab[i] = malloc(sizeof(t_info_pos) * x);
 		i++;
 	}
 	return (tab);
+}
+
+int	ft_open_fd(char *fd)
+{
+	int	in;
+
+	in = open(fd, O_RDONLY, 0644);
+	if (in == -1)
+	{
+		perror(fd);
+		exit (1);
+	}
+	return (in);
 }
 
 int	ft_len_x(int in)
@@ -64,22 +77,6 @@ int	ft_len_y(int in)
 		line = get_next_line(in);
 	}
 	free(line);
+	close(in);
 	return (y);
 }
-
-#include<stdio.h>
-int main(int argc, char **argv)
-{
-	(void) argc;
-	int	in;
-	int	x;
-	int	y;
-
-	in = open(argv[1], O_RDONLY, 0644);
-	x = ft_len_x(in);
-	close(in);
-	in = open(argv[1], O_RDONLY, 0644);
-	y = ft_len_y(in);
-	printf("x = %d\ny = %d\n", x, y);
-
-}	
