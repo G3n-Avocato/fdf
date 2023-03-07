@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 23:20:06 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/06 18:55:51 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:43:54 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_base(char c, int str_base)
 	return (-1);
 }
 
-int	ft_atoi(const char *str, int str_base)
+int	ft_atoi_base(const char *str, int str_base)
 {
 	int	neg;
 	int	nb;

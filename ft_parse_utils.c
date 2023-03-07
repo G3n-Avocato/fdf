@@ -6,22 +6,24 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 12:55:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/06 19:30:57 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:32:33 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_info_pos	**ft_init_struct(int x, int y)
+t_param	**ft_init_struct(int x, int y)
 {
-	t_info_pos	**tab;
+	t_param	**tab;
 	int	i;
 
 	i = 0;
-	tab = malloc(sizeof(t_info_pos *) * y);
+//	tab = malloc(sizeof(t_param *) * y);
+	tab = calloc(y + 1, sizeof(t_param *));
 	while (i < y)
 	{
-		tab[i] = malloc(sizeof(t_info_pos) * x);
+		//tab[i] = malloc(sizeof(t_param) * x);
+		tab[i] = calloc(x + 1, sizeof(t_param));
 		i++;
 	}
 	return (tab);
@@ -79,4 +81,14 @@ int	ft_len_y(int in)
 	free(line);
 	close(in);
 	return (y);
+}
+
+void	ft_free_n_tab(char ***tab, int i)
+{
+	while(i != 0)
+	{
+		ft_free_tab(tab[i]);
+		i--;
+	}
+	free(tab);
 }

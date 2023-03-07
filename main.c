@@ -6,12 +6,12 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 12:56:51 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/06 19:07:28 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:33:58 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+/*
 void	ft_parse(char *line, t_info_pos **tab, int pos, int x)
 {
 	char	**tab_c;
@@ -28,7 +28,7 @@ void	ft_parse(char *line, t_info_pos **tab, int pos, int x)
 		if (tab_v[i] == NULL)
 		{
 			ft_free_tab(tab_c);
-			// fct free tab_v, i
+			ft_free_n_tab(tab_v, i);
 			exit (1);
 		}
 		i++;
@@ -72,24 +72,35 @@ int	**ft_recov_map(int x, int y, int in)
 	free(line);
 	return (tab);
 }
-
+*/
 #include <stdio.h>
 int	main(int argc, char **argv)
 {
-	int	x;
-	int	y;
-	int	in;
-	t_info_pos	**tab;
+	t_param	**tab;
 
+	int	i;
+	int	j;
+	int	in;
+	int	x;
+
+	i = 0;
 	if (argc != 2)
 		return (1);
+	tab = ft_rec_fd(argv[1]);
+
 	in = ft_open_fd(argv[1]);
 	x = ft_len_x(in);
-	in = ft_open_fd(argv[1]);
-	y = ft_len_y(in);
-	in = ft_open_fd(argv[1]);
-	tab = ft_recov_map(x, y, in);
-
-
+	while (tab[i] != NULL)
+	{
+		j = 0;
+		while (j != x)
+		{
+			printf(" %d ", tab[i][j].alt);
+			printf("rgb = %d, %d, %d ||", tab[i][j].rgb[0], tab[i][j].rgb[1], tab[i][j].rgb[2]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }
 
