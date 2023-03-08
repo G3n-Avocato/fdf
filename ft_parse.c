@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:35:32 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/07 18:13:59 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:48:43 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_param	**ft_parse_struct(char ***tab_v, t_param **tab, int pos, int x)
 	return (tab);
 }
 
-
+//+ de 25 lignes / actu 4/5
 static t_param	**ft_parse_line(char *line, t_param **tab, int pos, int x)
 {
 	char	**tab_c;
@@ -71,7 +71,7 @@ static t_param	**ft_rec_map(int x, int y, int in)
 	line = get_next_line(in);
 	while (line != NULL)
 	{
-		ft_parse_line(line, tab, pos, x); ///
+		ft_parse_line(line, tab, pos, x);
 		free(line);
 		line = get_next_line(in);
 		pos++;

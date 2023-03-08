@@ -6,7 +6,7 @@
 #    By: lamasson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/07 13:22:35 by lamasson          #+#    #+#              #
-#    Updated: 2023/03/07 17:30:39 by lamasson         ###   ########.fr        #
+#    Updated: 2023/03/08 20:39:16 by lamasson         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,29 +30,36 @@ OBJS	= ${SRCS:%.c=%.o}
 
 OBJS_BONUS = ${SRCS_BONUS:%.c=%.o}
 
-LIBFT	= ./libft
+LIBFT	= ./libft/libft.a
+MLX	= ./mlx_linux/libmlx.a
 
-LIB	= ./libft/libft.a
+LIBS	= -L libft -lft -L mlx_linux -lmlx  -lXext -lX11 -lm -lz 
 
 %.o: %.c
 	@${CC} ${CFLAGS} -c $< -o $@
 
-${NAME}:	${OBJS}
-	@make -C ${LIBFT}
-	@${CC} ${CFLAGS} ${OBJS} ${LIB} -o ${NAME}
+${NAME}: ${OBJS} $(MLX) ${LIBFT} 
+	@${CC} ${CFLAGS} ${OBJS} ${LIBS} -o ${NAME}
 
 all:	${NAME}
 
+$(MLX)	:
+	@make -C ./mlx_linux
+
+$(LIBFT):
+	@make -C ./libft
+	
+
 bonus:	${OBJS_BONUS}
-	@make -C ${LIBFT}
-	@${CC} ${CFLAGS} ${OBJS_BONUS} ${LIB} -o ${NAME}
+	@make -C ./libft
+	@${CC} ${CFLAGS} ${OBJS_BONUS} ${LIBS} -o ${NAME}
 
 clean:
-	@make -C ${LIBFT} clean
+	@make -C ./libft clean
 	@${RM} ${OBJS} ${OBJS_BONUS}
 
 fclean: clean
-	@make -C ${LIBFT} fclean
+	@make -C ./libft fclean
 	@${RM} ${NAME}
 
 re:	fclean all

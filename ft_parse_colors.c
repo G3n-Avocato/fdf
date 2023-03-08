@@ -6,13 +6,12 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:31:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/07 18:39:09 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:41:30 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-//parse hexa ne marche pas
-//
+
 static int	*ft_parse_hexa(char *hexa)
 {
 	int	i;
