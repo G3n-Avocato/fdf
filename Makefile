@@ -6,7 +6,7 @@
 #    By: lamasson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/07 13:22:35 by lamasson          #+#    #+#              #
-#    Updated: 2023/03/08 20:39:16 by lamasson         ###   ########.fr        #
+#    Updated: 2023/03/20 16:30:49 by lamasson         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,11 @@ NAME	= fdf
 
 SRCS	= main.c \
 	  ft_parse.c \
+	  ft_parse_pos.c \
 	  ft_parse_utils.c \
 	  ft_parse_colors.c \
-	  ft_atoi_base.c
+	  ft_atoi_base.c \
+	  ft_mlx_init.c
 
 SRCS_BONUS =
 

@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:31:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/08 16:41:30 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/19 19:11:06 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	*ft_parse_hexa(char *hexa)
 {
-	int	i;
-	int	j;
-	int	*rgb;
+	int		i;
+	int		j;
+	int		*rgb;
 	char	*cut;
 
 	j = 0;
@@ -26,13 +26,14 @@ static int	*ft_parse_hexa(char *hexa)
 	{
 		cut = ft_substr(hexa, i, 2);
 		rgb[j] = ft_atoi_base(cut, 16);
+		free(cut);
 		i = i + 2;
 		j++;
 	}
 	return (rgb);
 }
 
-t_param	**ft_parse_color(char ***tab_v, t_param **tab, int pos, int x)
+t_point	**ft_parse_color(char ***tab_v, t_point **tab, int pos, int x)
 {
 	int	i;
 	int	*buf_rgb;

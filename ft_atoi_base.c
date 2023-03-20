@@ -6,16 +6,18 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 23:20:06 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/07 17:43:54 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:08:48 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	check_base(char c, int str_base)
 {
-	int	i;
-	char *base1 = "0123456789abcdef";
-	char *base2 = "0123456789ABCDEF";
-	
+	int		i;
+	char	*base1;
+	char	*base2;
+
+	base1 = "0123456789abcdef";
+	base2 = "0123456789ABCDEF";
 	i = 0;
 	while (i < str_base)
 	{

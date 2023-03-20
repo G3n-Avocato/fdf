@@ -6,24 +6,22 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 12:55:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/07 18:32:33 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/19 19:56:21 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_param	**ft_init_struct(int x, int y)
+t_point	**ft_init_struct(t_size size)
 {
-	t_param	**tab;
-	int	i;
+	t_point	**tab;
+	int		i;
 
 	i = 0;
-//	tab = malloc(sizeof(t_param *) * y);
-	tab = calloc(y + 1, sizeof(t_param *));
-	while (i < y)
+	tab = calloc(size.y + 1, sizeof(t_point *));
+	while (i < size.y)
 	{
-		//tab[i] = malloc(sizeof(t_param) * x);
-		tab[i] = calloc(x + 1, sizeof(t_param));
+		tab[i] = calloc(size.x + 1, sizeof(t_point));
 		i++;
 	}
 	return (tab);
@@ -45,8 +43,8 @@ int	ft_open_fd(char *fd)
 int	ft_len_x(int in)
 {
 	char	*line;
-	int	i;
-	int	x;
+	int		i;
+	int		x;
 
 	i = 0;
 	x = 0;
@@ -62,13 +60,15 @@ int	ft_len_x(int in)
 	}
 	free(line);
 	close(in);
+	line = get_next_line(in);
+	free(line);
 	return (x);
 }
 
 int	ft_len_y(int in)
 {
 	char	*line;
-	int	y;
+	int		y;
 
 	y = 0;
 	line = get_next_line(in);
@@ -85,7 +85,7 @@ int	ft_len_y(int in)
 
 void	ft_free_n_tab(char ***tab, int i)
 {
-	while(i != 0)
+	while (i != 0)
 	{
 		ft_free_tab(tab[i]);
 		i--;
