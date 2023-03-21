@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 13:38:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/20 20:20:33 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:32:19 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "mlx_linux/mlx.h"
 #include <math.h>
 #include <stdio.h>
-
+/*
 static void	ft_mlx_pixel_put(t_data data, int x, int y, int color)
 {
 	char	*dst;
@@ -48,7 +48,7 @@ static int	draw_line(int posx, int posy, int tmpx, int tmpy, t_data data)
 	return (0);
 }
 
-static void	draw_point(t_data data, t_point **point, t_size size)
+static void	draw_point(t_vars *vars)
 {
 	int	i;
 	int	j;
@@ -84,6 +84,7 @@ static void	draw_point(t_data data, t_point **point, t_size size)
 		i++;
 	}
 }
+
 
 void	ft_itermap(t_point **point, t_size size, void(*f)(t_point *, float), float theta)
 {
@@ -152,6 +153,14 @@ int	ft_hook(int keycode, t_vars	*vars)
 	}
 	return (0);
 }
+*/
+	
+void	destroy_mlx(t_vars vars)
+{
+	mlx_destroy_image(vars.mlx, vars.data.img);
+	mlx_destroy_window(vars.mlx, vars.win);
+	mlx_destroy_display(vars.mlx);
+}
 
 int	ft_mlx_init(t_point **point, t_size size)
 {
@@ -170,13 +179,13 @@ int	ft_mlx_init(t_point **point, t_size size)
 	}
 	vars.data.img = mlx_new_image(vars.mlx, WIN_WIDTH, WIN_HEIGHT);
 	vars.data.addr = mlx_get_data_addr(vars.data.img, &vars.data.bits_per_pixel, &vars.data.line_length, &vars.data.endian);
-	ft_itermap(point, size, matrice_y, 30 * PI / 180);
-	draw_point(vars.data, point, size);
+	
+	draw_point(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.data.img, 0, 0);
+
 	mlx_hook(vars.win, 2, 1, ft_hook, &vars);
+
 	mlx_loop(vars.mlx);
-	mlx_destroy_image(vars.mlx, vars.data.img);
-	mlx_destroy_window(vars.mlx, vars.win);
-	mlx_destroy_display(vars.mlx);
+	destroy_mlx(vars);
 	return (0);
 }
