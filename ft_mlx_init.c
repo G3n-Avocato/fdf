@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 13:38:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/21 18:32:19 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:39:56 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,26 @@ int	ft_hook(int keycode, t_vars	*vars)
 	return (0);
 }
 */
-	
+
+
+void	ft_clean_image(t_vars *vars)
+{
+	int	i = 0;
+	int	j = 0;
+
+	while (i < WIN_HEIGHT)
+	{
+		j = 0;
+		while (j < WIN_WIDTH)
+		{
+			ft_mlx_pixel_put(vars->data, j, i, 0x00000000);
+			j++;
+		}
+		i++;
+	}
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->data.img, 0, 0);
+}
+
 void	destroy_mlx(t_vars vars)
 {
 	mlx_destroy_image(vars.mlx, vars.data.img);
@@ -182,7 +201,8 @@ int	ft_mlx_init(t_point **point, t_size size)
 	
 	draw_point(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.data.img, 0, 0);
-
+	//ft_clean_image(&vars);
+//	mlx_hook(vars.win, 17, 0L, mlx_loop_end, &vars);
 	mlx_hook(vars.win, 2, 1, ft_hook, &vars);
 
 	mlx_loop(vars.mlx);

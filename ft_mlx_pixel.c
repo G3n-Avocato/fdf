@@ -6,13 +6,13 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 12:56:49 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/21 14:19:39 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:59:46 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	ft_mlx_pixel_put(t_data data, int x, int y, int color)
+void	ft_mlx_pixel_put(t_data data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -35,7 +35,10 @@ static int	draw_line(t_pixel *pixel, t_vars *vars)
 	put_y = pixel->pos_y;
 	while (pix)
 	{
-		ft_mlx_pixel_put(vars->data, put_x, put_y, 0xFFFFFFFF);
+		if(pixel->pos_z > 10)  //////////
+			ft_mlx_pixel_put(vars->data, put_x, put_y, 0x024e4b);    ////////
+		else
+			ft_mlx_pixel_put(vars->data, put_x, put_y, 0xFFFFFFFF);
 		put_x += pixel->del_x;
 		put_y += pixel->del_y;
 		--pix;
@@ -75,6 +78,7 @@ void	draw_point(t_vars *vars)
 		j = 0;
 		while (j < vars->size.x)
 		{
+			pixel.pos_z = vars->point[i][j].z;
 			pixel.pos_x = (int)(vars->point[i][j].x * 15.0) + WIN_WIDTH / 2;
 			pixel.pos_y = (int)(vars->point[i][j].y * 15.0) + WIN_HEIGHT / 2;
 			init_pixel_x(&pixel, vars, i, j);

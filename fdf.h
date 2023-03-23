@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:50:16 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/21 14:38:40 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:58:01 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_point{
 }t_point;
 
 typedef struct s_pixel{
+	int		pos_z;
 	int		pos_x;
 	int		pos_y;
 	int		tmp_x;
@@ -75,8 +76,11 @@ t_point	**ft_parse_color(char ***tab_v, t_point **tab, int pos, int x);
 int		ft_atoi_base(const char *str, int str_base);
 
 int		ft_mlx_init(t_point **point, t_size size);
+void	ft_clean_image(t_vars *vars);
 
 void	draw_point(t_vars *vars);
+void	ft_mlx_pixel_put(t_data data, int x, int y, int color);
+
 
 int		ft_hook(int keycode, t_vars *vars);
 void	matrice_z(t_point *point, float theta);
