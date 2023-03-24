@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:35:32 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/20 16:20:29 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:58:05 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ static t_point	**ft_parse_line(char *line, t_point **tab, int pos, t_size size)
 	if (tab_v == NULL)
 		exit (1);
 	tab_v = ft_map_storage(line, tab_v, size.x);
+	if (tab_v == NULL)
+	{
+		ft_free_struct //pb de struct a recuperer 
+	}
 	tab = ft_parse_color(tab_v, tab, pos, size.x);
 	tab = ft_parse_struct(tab_v, tab, pos, size);
 	return (tab);

@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 12:55:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/19 19:56:21 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/23 23:18:06 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	ft_len_y(int in)
 
 void	ft_free_n_tab(char ***tab, int i)
 {
-	while (i != 0)
+	while (i >= 0)
 	{
 		ft_free_tab(tab[i]);
 		i--;
