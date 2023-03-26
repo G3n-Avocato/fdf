@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 13:51:28 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/24 17:49:29 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/26 15:54:20 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	***ft_map_storage(char *line, char ***tab_v, int x)
 	if (tab_c == NULL)
 	{
 		ft_free_n_tab(tab_v, x);
-		exit (1);
+		return (NULL);
 	}
 	while (i != x)
 	{

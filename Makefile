@@ -6,7 +6,7 @@
 #    By: lamasson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/07 13:22:35 by lamasson          #+#    #+#              #
-#    Updated: 2023/03/21 16:22:34 by lamasson         ###   ########.fr        #
+#    Updated: 2023/03/26 18:57:18 by lamasson         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS	= main.c \
 	  ft_mlx_pixel.c \
 	  ft_mlx_hook.c \
 	  ft_matrice_rotation.c \
+	  ft_mlx_color.c
 
 SRCS_BONUS =
 

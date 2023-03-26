@@ -6,47 +6,58 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:35:32 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/24 17:58:05 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/26 17:37:02 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_point	**ft_parse_line(char *line, t_point **tab, int pos, t_size size)
+static int	ft_parse_line(char *line, t_point **tab, int pos, t_size size)
 {
 	char	***tab_v;
 
 	tab_v = calloc(size.x + 1, sizeof(char **));
 	if (tab_v == NULL)
-		exit (1);
+	{
+		ft_free_struct(tab);
+		return (1);
+	}
 	tab_v = ft_map_storage(line, tab_v, size.x);
 	if (tab_v == NULL)
 	{
-		ft_free_struct //pb de struct a recuperer 
+		ft_free_struct(tab);
+		return (1);
 	}
 	tab = ft_parse_color(tab_v, tab, pos, size.x);
 	tab = ft_parse_struct(tab_v, tab, pos, size);
-	return (tab);
+	return (0);
 }
 
 static t_point	**ft_get_map(t_size size, int in)
 {
 	t_point	**tab;
 	char	*line;
+	int		check;
 	int		pos;
 
 	pos = 0;
+	check = 0;
 	tab = ft_init_struct(size);
 	line = get_next_line(in);
-	while (line != NULL)
+	while (line != NULL && check == 0)
 	{
-		ft_parse_line(line, tab, pos, size);
+		check = ft_parse_line(line, tab, pos, size);
 		free(line);
 		line = get_next_line(in);
 		pos++;
 	}
-	if (line != NULL)
+	while (line != NULL)
+	{
 		free(line);
+		line = get_next_line(in);
+		if (line == NULL)
+			return (NULL);
+	}
 	return (tab);
 }
 
@@ -61,5 +72,10 @@ t_point	**ft_rec_fd(char *fd, t_size *size)
 	size->y = ft_len_y(in);
 	in = ft_open_fd(fd);
 	tab = ft_get_map(*size, in);
+	if (tab == NULL)
+	{
+		perror(fd);
+		exit (1);
+	}
 	return (tab);
 }
