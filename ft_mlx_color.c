@@ -12,12 +12,29 @@
 
 #include "fdf.h"
 
-int	ft_get_color(t_vars *vars, int i, int j)
+void	ft_get_color(t_vars *vars, t_pixel pixel)
 {
-	unsigned int color;
+	t_data	buffer;
+	t_point	**col;
+	int	pix;
 
-	color = (vars->point[i][j].rgb[2] << 16) + (vars->point[i][j].rgb[1] << 8) + (vars->point[i][j].rgb[0]);
-	return (color);
+	pix = (pixel->pos_y * line_length) + (pixel->pos_x * 4);
+	col = vars->point;
+	buffer = vars->data;
+	if (buffer->endian == 1)
+	{
+		buffer->addr[pix + 0] = FF;
+		buffer->addr[pix + 1] = col->rgb[0];
+		buffer->addr[pix + 2] = col->rgb[1];
+		buffer->addr[pix + 3] = col->rgb[2];
+	}
+	else if (buffer->endian == 0)
+	{
+		buffer->addr[pix + 0] = col->rgb[2];
+		buffer->addr[pix + 1] = col->rgb[1];
+		buffer->addr[pix + 2] = col->rgb[0];
+		buffer->addr[pix + 3] = FF;
+	}
 
 
 

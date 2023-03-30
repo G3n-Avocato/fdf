@@ -78,7 +78,7 @@ void	draw_point(t_vars *vars)
 		while (j < vars->size.x)
 		{
 			//pixel.col = *((unsigned int *) vars->point[i][j].rgb);
-			pixel.col = ft_get_color(vars, i, j);  ///
+			pixel.col = ft_get_color(vars, pixel, i, j);  ///
 			pixel.pos_x = (int)(vars->point[i][j].x * vars->zm) + WIN_WIDTH / 2;
 			pixel.pos_y = (int)(vars->point[i][j].y * vars->zm) + WIN_HEIGHT / 2;
 			if (j < vars->size.x - 1)
