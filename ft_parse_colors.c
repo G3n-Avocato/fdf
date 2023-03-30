@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:31:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/19 19:11:06 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:45:08 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	*ft_parse_hexa(char *hexa)
 	while (j != 3)
 	{
 		cut = ft_substr(hexa, i, 2);
-		rgb[j] = ft_atoi_base(cut, 16);
+		rgb[j] = ft_atoi_base(cut, "0123456789ABCDEF");
 		free(cut);
 		i = i + 2;
 		j++;

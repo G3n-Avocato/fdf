@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 12:56:49 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/26 19:38:30 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:11:58 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	draw_point(t_vars *vars)
 		j = 0;
 		while (j < vars->size.x)
 		{
-			//pixel.col = *((unsigned int *) vars->point[i][j].rgb);
-			pixel.col = ft_get_color(vars, pixel, i, j);  ///
+			ft_get_color(vars, pixel, i, j);
+			pixel.col = ft_int_color(vars, i, j);
 			pixel.pos_x = (int)(vars->point[i][j].x * vars->zm) + WIN_WIDTH / 2;
 			pixel.pos_y = (int)(vars->point[i][j].y * vars->zm) + WIN_HEIGHT / 2;
 			if (j < vars->size.x - 1)

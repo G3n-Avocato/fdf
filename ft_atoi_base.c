@@ -6,29 +6,27 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 23:20:06 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/19 18:08:48 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:34:26 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	check_base(char c, int str_base)
+#include "fdf.h"
+
+int	check_base(char c, char *str_base)
 {
 	int		i;
-	char	*base1;
-	char	*base2;
 
-	base1 = "0123456789abcdef";
-	base2 = "0123456789ABCDEF";
 	i = 0;
-	while (i < str_base)
+	while (str_base[i])
 	{
-		if (c == base1[i] || c == base2[i])
+		if (c == str_base[i])
 			return (i);
 		i++;
 	}
 	return (-1);
 }
 
-int	ft_atoi_base(const char *str, int str_base)
+int	ft_atoi_base(char *str, char *str_base)
 {
 	int	neg;
 	int	nb;
@@ -43,7 +41,7 @@ int	ft_atoi_base(const char *str, int str_base)
 	}
 	while (check_base(*str, str_base) != -1)
 	{
-		nb *= str_base;
+		nb *= ft_strlen(str_base);
 		nb += check_base(*str, str_base);
 		str++;
 	}
