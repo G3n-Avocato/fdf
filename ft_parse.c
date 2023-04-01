@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:35:32 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/26 17:37:02 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/01 20:42:35 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	ft_parse_line(char *line, t_point **tab, int pos, t_size size)
 {
 	char	***tab_v;
 
-	tab_v = calloc(size.x + 1, sizeof(char **));
+	tab_v = ft_calloc(size.x + 1, sizeof(char **));
 	if (tab_v == NULL)
 	{
 		ft_free_struct(tab);

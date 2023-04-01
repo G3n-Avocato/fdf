@@ -6,30 +6,80 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:31:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/01 17:27:37 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/01 22:30:51 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	*ft_parse_hexa(char *hexa)
+static int	*ft_parse_hexa_four(char *hexa, int	*rgb)
+{
+	char	*cut;
+	int		j;
+
+	j = 2;
+	cut = ft_substr(hexa, 2, 2);
+	rgb[j] = ft_atoi_base(cut, 16);
+	free(cut);
+	while (j-- > 0)
+		rgb[j] = 0;
+	return (rgb);
+}
+
+static int	*ft_parse_hexa_six(char *hexa, int *rgb)
+{
+	char	*cut;
+	int		j;
+	int		i;
+
+	i = 2;
+	j = 1;
+	while (j <= 2)
+	{
+		cut = ft_substr(hexa, i, 2);
+		rgb[j] = ft_atoi_base(cut, 16);
+		free(cut);
+		i += 2;
+		j++;
+	}
+	rgb[0] = 0;
+	return (rgb);
+}
+
+static int	*ft_parse_hexa(char *hexa, int *rgb)
 {
 	int		i;
 	int		j;
-	int		*rgb;
 	char	*cut;
 
 	j = 0;
 	i = 2;
-	rgb = malloc(sizeof(int) * 3);
 	while (j != 3)
 	{
 		cut = ft_substr(hexa, i, 2);
-		rgb[j] = ft_atoi_base(cut, "0123456789ABCDEF");
+		rgb[j] = ft_atoi_base(cut, 16);
 		free(cut);
 		i = i + 2;
 		j++;
 	}
+	return (rgb);
+}
+
+static int	*ft_size_hexa(char *hexa)
+{
+	int	*rgb;
+	int	size;
+
+	size = ft_strlen(hexa);
+	rgb = malloc(sizeof(int) * 3);
+	if (rgb == NULL)
+		exit (1);
+	if (size == 4)
+		rgb = ft_parse_hexa_four(hexa, rgb);
+	else if (size == 6)
+		rgb = ft_parse_hexa_six(hexa, rgb);
+	else
+		rgb = ft_parse_hexa(hexa, rgb);
 	return (rgb);
 }
 
@@ -43,13 +93,10 @@ t_point	**ft_parse_color(char ***tab_v, t_point **tab, int pos, int x)
 	{
 		if (tab_v[i][1] != NULL)
 		{
-			buf_rgb = ft_parse_hexa(tab_v[i][1]);
+			buf_rgb = ft_size_hexa(tab_v[i][1]);
 			tab[pos][i].rgb[0] = buf_rgb[0];
-			printf("pos = %d | i = %d | 0 = %x \n", pos, i, tab[pos][i].rgb[1]);
 			tab[pos][i].rgb[1] = buf_rgb[1];
-		//	printf("pos = %d | i = %d | 1 = %d ", pos, i, buf_rgb[1]);
 			tab[pos][i].rgb[2] = buf_rgb[2];
-		//	printf("pos = %d | i = %d | 2 = %d\n", pos, i, buf_rgb[2]);
 			free(buf_rgb);
 		}
 		else

@@ -74,7 +74,7 @@ char			***ft_map_storage(char *line, char ***tab_v, int x);
 t_point			**ft_parse_struct(char ***tab_v, t_point **tab, int pos, \
 		t_size size);
 t_point			**ft_parse_color(char ***tab_v, t_point **tab, int pos, int x);
-int				ft_atoi_base(char *str, char *str_base);
+int				ft_atoi_base(char *str, int str_base);
 
 int				ft_mlx_init(t_point **point, t_size size);
 void			draw_point(t_vars *vars);
