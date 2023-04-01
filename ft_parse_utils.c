@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 12:55:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/23 23:18:06 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/01 15:51:52 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ t_point	**ft_init_struct(t_size size)
 	int		i;
 
 	i = 0;
-	tab = calloc(size.y + 1, sizeof(t_point *));
+	tab = ft_calloc(size.y + 1, sizeof(t_point *));
 	while (i < size.y)
 	{
-		tab[i] = calloc(size.x + 1, sizeof(t_point));
+		tab[i] = ft_calloc(size.x + 1, sizeof(t_point));
 		i++;
 	}
 	return (tab);

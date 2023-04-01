@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:31:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/30 15:45:08 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/01 17:27:37 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,11 @@ t_point	**ft_parse_color(char ***tab_v, t_point **tab, int pos, int x)
 		{
 			buf_rgb = ft_parse_hexa(tab_v[i][1]);
 			tab[pos][i].rgb[0] = buf_rgb[0];
+			printf("pos = %d | i = %d | 0 = %x \n", pos, i, tab[pos][i].rgb[1]);
 			tab[pos][i].rgb[1] = buf_rgb[1];
+		//	printf("pos = %d | i = %d | 1 = %d ", pos, i, buf_rgb[1]);
 			tab[pos][i].rgb[2] = buf_rgb[2];
+		//	printf("pos = %d | i = %d | 2 = %d\n", pos, i, buf_rgb[2]);
 			free(buf_rgb);
 		}
 		else

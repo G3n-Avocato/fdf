@@ -6,13 +6,13 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 23:20:06 by lamasson          #+#    #+#             */
-/*   Updated: 2023/03/30 15:34:26 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/01 15:17:10 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	check_base(char c, char *str_base)
+static int	check_base(char c, char *str_base)
 {
 	int		i;
 
